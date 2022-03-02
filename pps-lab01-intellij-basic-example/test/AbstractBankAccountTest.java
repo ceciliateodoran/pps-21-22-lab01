@@ -14,14 +14,14 @@ public abstract class AbstractBankAccountTest {
 
     @Test
     public void testInitialBalance() {
-        assertEquals(0, bankAccount.getBalance());
+        assertEquals(0, this.bankAccount.getBalance());
     }
 
     @Test
     public void testDeposit() {
         final int depositedAmount = 100;
-        bankAccount.deposit(accountHolder.getId(), depositedAmount);
-        assertEquals(depositedAmount - bankAccount.getFee(), bankAccount.getBalance());
+        this.bankAccount.deposit(this.accountHolder.getId(), depositedAmount);
+        assertEquals(depositedAmount - this.bankAccount.getFee(), this.bankAccount.getBalance());
     }
 
     @Test
@@ -29,18 +29,18 @@ public abstract class AbstractBankAccountTest {
         final int firstDepositedAmount = 100;
         final int secondDepositedAmount = 50;
         final int newAccountHolderId = 2;
-        bankAccount.deposit(accountHolder.getId(), firstDepositedAmount);
-        bankAccount.deposit(newAccountHolderId, secondDepositedAmount);
-        assertEquals(firstDepositedAmount - bankAccount.getFee(), bankAccount.getBalance());
+        this.bankAccount.deposit(this.accountHolder.getId(), firstDepositedAmount);
+        this.bankAccount.deposit(newAccountHolderId, secondDepositedAmount);
+        assertEquals(firstDepositedAmount - this.bankAccount.getFee(), this.bankAccount.getBalance());
     }
 
     @Test
     public void testWithdraw() {
         final int depositedAmount = 100;
         final int withdrawnAmount = 70;
-        bankAccount.deposit(accountHolder.getId(), depositedAmount);
-        bankAccount.withdraw(accountHolder.getId(), withdrawnAmount);
-        assertEquals(depositedAmount - bankAccount.getFee() - withdrawnAmount - bankAccount.getFee(), bankAccount.getBalance());
+        this.bankAccount.deposit(this.accountHolder.getId(), depositedAmount);
+        this.bankAccount.withdraw(this.accountHolder.getId(), withdrawnAmount);
+        assertEquals(depositedAmount - this.bankAccount.getFee() - withdrawnAmount - this.bankAccount.getFee(), this.bankAccount.getBalance());
     }
 
     @Test
@@ -48,8 +48,8 @@ public abstract class AbstractBankAccountTest {
         final int depositedAmount = 100;
         final int withdrawnAmount = 70;
         final int newAccountHolderId = 2;
-        bankAccount.deposit(accountHolder.getId(), depositedAmount);
-        bankAccount.withdraw(newAccountHolderId, withdrawnAmount);
-        assertEquals(depositedAmount - bankAccount.getFee(), bankAccount.getBalance());
+        this.bankAccount.deposit(this.accountHolder.getId(), depositedAmount);
+        this.bankAccount.withdraw(newAccountHolderId, withdrawnAmount);
+        assertEquals(depositedAmount - this.bankAccount.getFee(), this.bankAccount.getBalance());
     }
 }
