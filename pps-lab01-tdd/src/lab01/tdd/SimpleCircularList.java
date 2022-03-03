@@ -61,6 +61,16 @@ public class SimpleCircularList implements CircularList {
 
     @Override
     public Optional<Integer> next(SelectStrategy strategy) {
+        if(this.list.isEmpty()){
+            return Optional.empty();
+        }else{
+            for (int i = 0; i<this.list.size();i++){
+                Optional<Integer> element = this.next();
+                if(element.isPresent() && strategy.apply(element.get())){
+                    return element;
+                }
+            }
+        }
         return Optional.empty();
     }
 }
